@@ -4,7 +4,7 @@ import { Quiz } from "@/components/quiz";
 import { Request } from "@/components/api";
 
 const fetchQuizData = async (category: string) => {
-  const url = `https://dev-editorial.digitalcontent.sky/lab-week-quiz/week/42/${category}.json`
+  const url = `https://uat-editorial.digitalcontent.sky/lab-week-quiz/week/42/${category}.json`
 
   const response = await Request(url);
 
