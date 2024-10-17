@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles/globals.css */
+@font-face {
+  font-family: 'SkyTextCustom';
+  src: url('/fonts/SkyText-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SkyTextCustom';
+  src: url('/fonts/SkyText-Bold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SkyTextCustom';
+  src: url('/fonts/SkyText-Italic.ttf') format('ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SkyTextCustom';
+  src: url('/fonts/SkyText-Light.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SkyTextCustom';
+  src: url('/fonts/SkyText-Medium.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --bg-fade: rgba(0,0,0,.1); /* Example of a custom background fade color */
+  --bg-blue: #002672; /* Example of a blue color */
+  --bg-red: #ea021a; /* Example of a red color */
+  --font-geist-sans-regular: var(--font-geist-sans-regular);
+  --font-geist-sans-italic: var(--font-geist-sans-italic);
+  --component-shade: #f4f5f7;
+  --shade-2: #e2e2e2;
+  --shade-3: #707070;
+  --supporting-text: calc(18px - 2px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'SkyTextCustom';
+  font-family: var(--font-geist-sans-regular)
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.logo::before{
+  background-image: radial-gradient(closest-side, hsla(0, 0%, 100%, .25), transparent);
+  background-position: 0 100px;
+}
