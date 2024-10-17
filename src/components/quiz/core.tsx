@@ -27,7 +27,7 @@ function Core({
   const [filteredValue, setFilteredValue] = useState('all');
   const [userAttempt, setUserAttempt] = useState(1);
   const [showDefaultResultState, setShowDefaultResult] = useState(true);
-  const [answerSelectionTypeState, setAnswerSelectionType] = useState(undefined);
+  // const [answerSelectionTypeState, setAnswerSelectionType] = useState(undefined);
 
   const [totalPoints, setTotalPoints] = useState(0);
   const [correctPoints, setCorrectPoints] = useState(0);
@@ -44,11 +44,11 @@ function Core({
     setActiveQuestion(questions[currentQuestionIndex]);
   }, [currentQuestionIndex, questions]);
 
-  useEffect(() => {
-    const { answerSelectionType } = activeQuestion;
-    // Default single to avoid code breaking due to automatic version upgrade
-    setAnswerSelectionType(answerSelectionType || 'single');
-  }, [activeQuestion, currentQuestionIndex]);
+  // useEffect(() => {
+  //   // const { answerSelectionType } = activeQuestion;
+  //   // Default single to avoid code breaking due to automatic version upgrade
+  //   // setAnswerSelectionType(answerSelectionType || 'single');
+  // }, [activeQuestion, currentQuestionIndex]);
 
   useEffect(() => {
     if (endQuiz) {
@@ -159,27 +159,6 @@ function Core({
     });
   };
 
-  const renderTags = (answerSelectionType: any, numberOfSelection: any, segment: any) => {
-    const {
-      singleSelectionTagText,
-      multipleSelectionTagText,
-      pickNumberOfSelection,
-    } = appLocale;
-
-    return (
-      <div className="tag-container">
-        {answerSelectionType === 'single'
-          && <span className="single selection-tag">{singleSelectionTagText}</span>}
-        {answerSelectionType === 'multiple'
-          && <span className="multiple selection-tag">{multipleSelectionTagText}</span>}
-        <span className="number-of-selection">
-          {pickNumberOfSelection.replace('<numberOfSelection>', numberOfSelection)}
-        </span>
-        {segment && <span className="selection-tag segment">{segment}</span>}
-      </div>
-    );
-  };
-
   const renderQuizResultQuestions = useCallback(() => {
     let filteredQuestions;
     let filteredUserInput: any;
@@ -203,9 +182,6 @@ function Core({
       const userInputIndex = filteredUserInput
         ? filteredUserInput[index]
         : userInput[index];
-
-      // Default single to avoid code breaking due to automatic version upgrade
-      const answerSelectionType = question.answerSelectionType || 'single';
 
       return (
         <div className="result-answer-wrapper" key={nanoid()}>
