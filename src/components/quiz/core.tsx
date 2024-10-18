@@ -206,7 +206,9 @@ function Core({
             {renderAnswerInResult(question, userInputIndex)}
           </div>
           {question.questionPic && (
-            <img src={question.questionPic} alt="question" />
+            <div className='px-12 py-8'>
+              <img src={question.questionPic} alt="question" />
+            </div>
           )}
           <Explanation question={question} isResultPage />
         </div>
@@ -333,6 +335,7 @@ function Core({
     if (questionArticle) {
       if (questionArticle.images) {
         const imageUrl = `https://e0.365dm.com/24/10/384x216/${questionArticle.images[0].filename}`
+        questions[currentQuestionIndex].questionPic = imageUrl;
         return (
             <img  className="w-full mb-2" src={imageUrl} alt={questionArticle.shortTitle} />
         )
@@ -399,15 +402,6 @@ function Core({
                   )}`,
                 )}
               />
-              {activeQuestion && activeQuestion.questionPic && (
-                <img src={activeQuestion.questionPic} alt="question" />
-              )}
-              {/* {activeQuestion
-                  && renderTags(
-                    answerSelectionTypeState,
-                    activeQuestion.correctAnswer.length,
-                    activeQuestion.segment,
-                  )} */}
               <div className="questionModal">
                 <InstantFeedback
                   question={activeQuestion}
@@ -421,7 +415,7 @@ function Core({
               <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4 mt-4'>
                 {activeQuestion && renderAnswers(activeQuestion, buttons)}
               </div>
-              <div>
+              <div className='px-8 pt-4'>
                 {renderArticleImage()}
               </div>
               {/* {(showNextQuestionButton || allowNavigation) && ( */}

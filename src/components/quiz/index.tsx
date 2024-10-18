@@ -129,10 +129,9 @@ export const Quiz = ({
         }
 
         async function fetchArticleData(articleId: string) {
-          const url = `https://editorial.digitalcontent.sky/articles/${articleId}.json`
+          const url = `https://${process.env.NEXT_PUBLIC_BUCKET_URL}/articles/${articleId}.json`
           const article = await Request(url);
           setQuestionArticle(article);
-          console.log(article);
         }
     
         if (newQuestions[0].article_id) {
