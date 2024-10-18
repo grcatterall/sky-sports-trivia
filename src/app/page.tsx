@@ -4,7 +4,7 @@ import { Quiz } from "@/components/quiz";
 import { Request } from "@/components/api";
 
 const fetchQuizData = async (category: string) => {
-  const url = `https://uat-${process.env.BUCKET_URL}/lab-week-quiz/week/42/${category}.json`
+  const url = `https://uat-editorial.digitalcontent.sky/lab-week-quiz/week/42/${category}.json`
 
   const response = await Request(url);
 
@@ -12,7 +12,7 @@ const fetchQuizData = async (category: string) => {
 }
 
 const getAvailableCategories = async () => {
-  const url = `https://uat-${process.env.BUCKET_URL}/lab-week-quiz/available-quizzes.json`
+  const url = `https://uat-editorial.digitalcontent.sky/lab-week-quiz/available-quizzes.json`
 
   const response = await Request(url);
 

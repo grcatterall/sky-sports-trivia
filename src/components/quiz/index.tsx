@@ -129,7 +129,7 @@ export const Quiz = ({
         }
 
         async function fetchArticleData(articleId: string) {
-          const url = `https://${process.env.BUCKET_URL}/articles/${articleId}.json`
+          const url = `https://editorial.digitalcontent.sky/articles/${articleId}.json`
           const article = await Request(url);
           setQuestionArticle(article);
           console.log(article);
