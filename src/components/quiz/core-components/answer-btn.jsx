@@ -11,7 +11,7 @@ export const AnswerButton = ({ answerButtons, index, onClickAnswer, checkSelecte
                     type="button"
                     disabled={answerButtons[index].disabled || false}
                     className={
-                        `bg-[var(--bg-red)] answerBtn btn  relative border-[1px] border-slate-950 px-[11px] py-[12px]  text-left`}
+                        `bg-[#ff7f7f] answerBtn btn  relative border-[1px] border-slate-950 px-[11px] py-[12px]  text-left`}
                     onClick={() => (revealAnswerOnSubmit ? onSelectAnswer(index) : onClickAnswer(index))}
                 >
                     {questionType === 'text' && <span>{answer}</span>}
