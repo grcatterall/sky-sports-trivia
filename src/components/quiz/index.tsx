@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Core from './core';
 import defaultLocale from './Locale';
 import './styles.css';
+import { Request } from '../api';
 
 
 interface QuizProps {
@@ -31,7 +32,7 @@ export type Quiz = {
     progressBarColor?: any;
 }
 
-type Question = {
+export type Question = {
     question: string;
     questionType: 'text' | 'photo';
     questionPic?: string; // Optional property for images in questions
@@ -42,6 +43,7 @@ type Question = {
     messageForIncorrectAnswer: string;
     explanation: string;
     point: string;
+    article_id?: string;
 }
 
 export const Quiz = ({
@@ -62,6 +64,7 @@ export const Quiz = ({
 }: QuizProps) => {
     const [start, setStart] = useState(false);
     const [questions, setQuestions] = useState(quiz.questions);
+    const [questionArticle, setQuestionArticle] = useState<any>({});
     const nrOfQuestions = quiz.nrOfQuestions && quiz.nrOfQuestions < quiz.questions.length
         ? quiz.nrOfQuestions
         : quiz.questions.length;
@@ -123,6 +126,17 @@ export const Quiz = ({
 
         if (shuffle) {
             newQuestions = shuffleAnswerSequence(newQuestions);
+        }
+
+        async function fetchArticleData(articleId: string) {
+          const url = `https://${process.env.BUCKET_URL}/articles/${articleId}.json`
+          const article = await Request(url);
+          setQuestionArticle(article);
+          console.log(article);
+        }
+    
+        if (newQuestions[0].article_id) {
+          fetchArticleData(newQuestions[0].article_id);
         }
 
         newQuestions.length = nrOfQuestions;
@@ -294,6 +308,7 @@ export const Quiz = ({
                         allowPauseTimer={allowPauseTimer}
                         enableProgressBar={enableProgressBar}
                         progressBarColor={quiz.progressBarColor}
+                        questionOneArticle={questionArticle}
                     />
                 )}
             </div>

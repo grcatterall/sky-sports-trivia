@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 
 
-export const AnswerButton = ({ answerButtons, index, onClickAnswer, checkSelectedAnswer, revealAnswerOnSubmit, allowNavigation, questionType, answer, nanoid, onSelectAnswer }
+export const AnswerButton = ({ answerButtons, index, onClickAnswer, checkSelectedAnswer, revealAnswerOnSubmit, allowNavigation, questionType, answer, nanoid, onSelectAnswer}
     // {answerButtons: any, index: any, onClickAnswer: any, checkSelectedAnswer: any, revealAnswerOnSubmit: any, allowNavigation: any, questionType: any, answer: any, nanoid: any, onSelectAnswer: any}
 ) => {
     const buttonRender = () => {

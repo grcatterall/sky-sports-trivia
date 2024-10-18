@@ -4,7 +4,15 @@ import { Quiz } from "@/components/quiz";
 import { Request } from "@/components/api";
 
 const fetchQuizData = async (category: string) => {
-  const url = `https://uat-editorial.digitalcontent.sky/lab-week-quiz/week/42/${category}.json`
+  const url = `https://uat-${process.env.BUCKET_URL}/lab-week-quiz/week/42/${category}.json`
+
+  const response = await Request(url);
+
+  return response;
+}
+
+const getAvailableCategories = async () => {
+  const url = `https://uat-${process.env.BUCKET_URL}/lab-week-quiz/available-quizzes.json`
 
   const response = await Request(url);
 
@@ -21,11 +29,14 @@ const renderQuiz = (data: Quiz | null) => {
 
 export default function Home() {
   const [quizData, setQuizData] = useState<Quiz | null>(null);
+  const [quizCategories, setQuizCategories] = useState<any>([]);
   const [currentCategory, setCurrentCategory] = useState('quiz-test');
 
   useLayoutEffect(() => {
     async function fetchData() {
       try {
+        const categories = await getAvailableCategories();
+        setQuizCategories(categories);
         const data = await fetchQuizData(currentCategory);
         setQuizData(data);
       } catch (err) {
@@ -43,8 +54,11 @@ export default function Home() {
         <div className="flex justify-between">
           <p>Select Quiz Category: </p>
           <select className="border-[1px] border-slate-400 rounded-sm ml-2 p-1 pr-4" onChangeCapture={(e) => {setCurrentCategory((e.target as HTMLInputElement).value)}}>
-            <option value={'quiz-test'}>Template</option>
-            <option value={'premier-league'}>Premier League</option>
+            {quizCategories.map((category: {key: string, value: string}) => {
+              return (
+                <option key={category.key} value={category.value}>{category.key}</option> 
+              )
+            })}
           </select>
         </div>
         {renderQuiz(quizData)}

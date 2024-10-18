@@ -8,11 +8,13 @@ import { checkAnswer, selectAnswer, rawMarkup } from './core-components/helpers'
 import InstantFeedback from './core-components/InstantFeedback';
 import Explanation from './core-components/Explanation';
 import { AnswerButton } from './core-components/answer-btn';
+import { Request } from '../api';
+import { Question } from '.';
 
 function Core({
   questions, appLocale, showDefaultResult, onComplete, customResultPage,
   showInstantFeedback, continueTillCorrect, revealAnswerOnSubmit, allowNavigation,
-  onQuestionSubmit, timer, allowPauseTimer, enableProgressBar, progressBarColor,
+  onQuestionSubmit, timer, allowPauseTimer, enableProgressBar, progressBarColor, questionOneArticle
 }: any) {
   const [incorrectAnswer, setIncorrectAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -35,6 +37,7 @@ function Core({
   const [questionSummary, setQuestionSummary] = useState<any>(undefined);
   const [timeRemaining, setTimeRemaining] = useState(timer);
   const [isRunning, setIsRunning] = useState(true);
+  const [questionArticle, setQuestionArticle] = useState<any>(questionOneArticle)
 
   useEffect(() => {
     setShowDefaultResult(showDefaultResult !== undefined ? showDefaultResult : true);
@@ -42,13 +45,20 @@ function Core({
 
   useEffect(() => {
     setActiveQuestion(questions[currentQuestionIndex]);
+    
   }, [currentQuestionIndex, questions]);
 
-  // useEffect(() => {
-  //   // const { answerSelectionType } = activeQuestion;
-  //   // Default single to avoid code breaking due to automatic version upgrade
-  //   // setAnswerSelectionType(answerSelectionType || 'single');
-  // }, [activeQuestion, currentQuestionIndex]);
+  useEffect(() => {
+    async function fetchArticleData(articleId: string) {
+      const url = `https://${process.env.BUCKET_URL}/articles/${articleId}.json`
+      const article = await Request(url);
+      setQuestionArticle(article);
+    }
+
+    if (activeQuestion.article_id) {
+      fetchArticleData(activeQuestion.article_id);
+    }
+  }, [currentQuestionIndex, questions]);
 
   useEffect(() => {
     if (endQuiz) {
@@ -252,7 +262,7 @@ function Core({
     answerSelectionType = answerSelectionType || 'single';
 
     return answers.map((answer: any, index: any) => (
-      <AnswerButton key={nanoid()} onSelectAnswer={onSelectAnswer} answerButtons={answerButtons} answer={answer} nanoid={nanoid} index={index} questionType={questionType} onClickAnswer={onClickAnswer} checkSelectedAnswer={checkSelectedAnswer} revealAnswerOnSubmit={revealAnswerOnSubmit} allowNavigation={allowNavigation}/>
+      <AnswerButton key={nanoid()} onSelectAnswer={onSelectAnswer} answerButtons={answerButtons} answer={answer} nanoid={nanoid} index={index} questionType={questionType} onClickAnswer={onClickAnswer} checkSelectedAnswer={checkSelectedAnswer} revealAnswerOnSubmit={revealAnswerOnSubmit} allowNavigation={allowNavigation} questionArticle={questionArticle}/>
     ));
   };
 
@@ -316,6 +326,18 @@ function Core({
     setEndQuiz(true);
     getUnansweredQuestions();
   };
+
+
+  const renderArticleImage = () => {
+    if (questionArticle) {
+      if (questionArticle.images) {
+        const imageUrl = `https://e0.365dm.com/24/10/384x216/${questionArticle.images[0].filename}`
+        return (
+            <img  className="w-full mb-2" src={imageUrl} alt={questionArticle.shortTitle} />
+        )
+      }
+    }
+}
 
   return (
     <div className="questionWrapper w-full">
@@ -397,6 +419,9 @@ function Core({
               </div>
               <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4 mt-4'>
                 {activeQuestion && renderAnswers(activeQuestion, buttons)}
+              </div>
+              <div>
+                {renderArticleImage()}
               </div>
               {/* {(showNextQuestionButton || allowNavigation) && ( */}
               <div className="flex justify-center w-full">
