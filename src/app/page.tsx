@@ -81,11 +81,15 @@ export default function Home() {
   // Handle week change
   const handleWeekChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setQuizWeek(event.target.value);
+    setQuizCategories([]);
+    setCurrentCategory('');
+    setQuizData(null);
   };
 
   // Handle category change
   const handleCategorySet = (event: ChangeEvent<HTMLSelectElement>) => {
     setCurrentCategory(event.target.value);
+    setQuizData(null);
   };
 
   // Render quiz content
