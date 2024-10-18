@@ -415,7 +415,7 @@ function Core({
               <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4 mt-4'>
                 {activeQuestion && renderAnswers(activeQuestion, buttons)}
               </div>
-              <div className='px-8 pt-4'>
+              <div className='md:px-8 md:pt-4'>
                 {renderArticleImage()}
               </div>
               {/* {(showNextQuestionButton || allowNavigation) && ( */}
@@ -423,7 +423,7 @@ function Core({
                 {allowNavigation && currentQuestionIndex > 0 && (
                   <button
                     onClick={() => nextQuestion(currentQuestionIndex - 2)}
-                    className={` prevQuestionBtn btn px-4 py-3 rounded w-[20%] bg-[var(--bg-blue)] text-white ease-in-out transition font-bold text-lg/[12px]`}
+                    className={` prevQuestionBtn btn px-4 py-3 rounded md:w-[20%] w-[40%] bg-[var(--bg-blue)] text-white ease-in-out transition font-bold text-lg/[12px]`}
                     type="button"
                   >
                     {appLocale.prevQuestionBtn}
@@ -433,7 +433,7 @@ function Core({
                 {allowNavigation && currentQuestionIndex == 0 && (
                   <button
                     onClick={() => nextQuestion(currentQuestionIndex - 2)}
-                    className={` prevQuestionBtn btn px-4 py-3 w-[20%] rounded hover:bg-[var(--bg-blue)] text-white ease-in-out transition font-bold text-lg/[12px] ${currentQuestionIndex == 0 ? 'bg-[#566b96] hover:bg-[#566b96] hover:pointer-events-none hover:cursor-default' : ''}`}
+                    className={` prevQuestionBtn btn px-4 py-3 md:w-[20%] w-[40%] rounded hover:bg-[var(--bg-blue)] text-white ease-in-out transition font-bold text-lg/[12px] ${currentQuestionIndex == 0 ? 'bg-[#566b96] hover:bg-[#566b96] hover:pointer-events-none hover:cursor-default' : ''}`}
                     type="button"
                     disabled={true}
                   >
@@ -443,7 +443,7 @@ function Core({
 
                 <button
                   onClick={() => nextQuestion(currentQuestionIndex)}
-                  className={`nextQuestionBtn btn ppx-2 ml-4 w-[20%] rounded text-center hover:bg-[var(--bg-blue)] bg-[var(--bg-blue)]  text-white px-4 py-3  ease-in-out transition font-bold text-lg/[12px] ${!showNextQuestionButton ? 'text-slate-300 bg-[#566b96] hover:bg-[#566b96]' : ''}`}
+                  className={`nextQuestionBtn btn ppx-2 ml-4 md:w-[20%] w-[40%] rounded text-center hover:bg-[var(--bg-blue)] bg-[var(--bg-blue)]  text-white px-4 py-3  ease-in-out transition font-bold text-lg/[12px] ${!showNextQuestionButton ? 'text-slate-300 bg-[#566b96] hover:bg-[#566b96]' : ''}`}
                   type="button"
                   disabled={!showNextQuestionButton}
                 >

@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSansItalic.variable} ${geistSans.variable} ${geistMono.variable} ${geistSansMedium.variable}  antialiased`}
+        className={`${geistSansItalic.variable} ${geistSans.variable} ${geistMono.variable} ${geistSansMedium.variable} w-[100vw] antialiased`}
       >
         <Header />
 

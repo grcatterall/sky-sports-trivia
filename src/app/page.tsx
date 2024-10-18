@@ -114,8 +114,8 @@ export default function Home() {
   };
 
   return (
-    <div className="items-center align-top justify-items-center min-h-[85vh] p-8 py-0 pb-20 gap-16 sm:p-4 sm:pt-2 font-[family-name:var(--font-geist-sans)] bg-[#d7d5dd]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start bg-white max-w-[1024px] mx-auto p-8 shadow-md">
+    <div className="items-center align-top justify-items-center min-h-[85vh] md:p-8 sm:py-0 pb-20 gap-16 sm:p-4 sm:pt-2 font-[family-name:var(--font-geist-sans)] bg-[#d7d5dd] pt-2">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start bg-white max-w-[1024px] mx-auto md:p-8 md:px-8 shadow-md px-2">
         <div className="flex flex-col space-y-4">
           <p className="text-lg font-semibold">Select Quiz Category</p>
 

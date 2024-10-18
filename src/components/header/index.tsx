@@ -10,7 +10,7 @@ export const Header = () => {
         backgroundSize: `100% 94px`
       }}
     >
-      <div className="h-[94px] w-full bg-origin-content bg-no-repeat border-separate table mx-auto max-w-[1024px] md:max-w-[762px]"
+      <div className="h-[94px] w-full bg-origin-content bg-no-repeat border-separate table mx-auto lg:max-w-[1024px] md:max-w-[762px] sm:max-w-[500px] max-w-[300px]"
         style={{
           backgroundImage: `linear-gradient(0deg,var(--bg-fade) 0,transparent 76%),linear-gradient(to right,var(--bg-blue) 0,var(--bg-blue) 78px,var(--bg-red) 78px,var(--bg-red) 100%)`,
           backgroundSize: `100% 94px`
@@ -25,7 +25,7 @@ export const Header = () => {
           </a>
         </div>
 
-        <div className="text-right text-white table-cell align-middle">
+        <div className="text-right text-white sm:table-cell align-middle hidden">
           <div className=" text-white inline-block p-[1px]" data-role="site-login">
             <ul className="site-login__links inline-block list-none p-0">
               <li className="inline-block mr-[4px]"><a href="/watch/get-sky" className="block text-sm/[16px] font-bold max-w-[150px] overflow-hidden px-[5px] py-[9px]">Get Sky Sports</a></li>
@@ -43,7 +43,7 @@ export const Header = () => {
         </a>
       </div>
       {/* BELOW HERE PLEASE GRAHAM */}
-      <div className="h-[52px] mx-auto max-w-[1024px] md:max-w-[762px] px-[24px]">
+      <div className="h-[52px] mx-auto max-w-[1024px] md:max-w-[762px] sm:max-w-[684px] px-[24px] hidden md:block">
         <div className="site-nav-desktop items-center flex h-[52px] justify-between pointer-events-none" role="navigation" aria-label="Main" data-role="main-nav" id="site-nav-desktop-wrap">
           <div className="site-login site-login--mobile hidden" data-role="site-login">
 
