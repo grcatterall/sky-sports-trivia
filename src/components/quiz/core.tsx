@@ -9,7 +9,6 @@ import InstantFeedback from './core-components/InstantFeedback';
 import Explanation from './core-components/Explanation';
 import { AnswerButton } from './core-components/answer-btn';
 import { Request } from '../api';
-import { Question } from '.';
 
 function Core({
   questions, appLocale, showDefaultResult, onComplete, customResultPage,
@@ -262,7 +261,7 @@ function Core({
     answerSelectionType = answerSelectionType || 'single';
 
     return answers.map((answer: any, index: any) => (
-      <AnswerButton key={nanoid()} onSelectAnswer={onSelectAnswer} answerButtons={answerButtons} answer={answer} nanoid={nanoid} index={index} questionType={questionType} onClickAnswer={onClickAnswer} checkSelectedAnswer={checkSelectedAnswer} revealAnswerOnSubmit={revealAnswerOnSubmit} allowNavigation={allowNavigation} questionArticle={questionArticle}/>
+      <AnswerButton key={nanoid()} onSelectAnswer={onSelectAnswer} answerButtons={answerButtons} answer={answer} nanoid={nanoid} index={index} questionType={questionType} onClickAnswer={onClickAnswer} checkSelectedAnswer={checkSelectedAnswer} revealAnswerOnSubmit={revealAnswerOnSubmit} allowNavigation={allowNavigation}/>
     ));
   };
 
