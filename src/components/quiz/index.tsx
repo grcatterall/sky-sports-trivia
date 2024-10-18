@@ -263,7 +263,7 @@ export const Quiz = ({
     };
 
     return (
-        <div className="react-quiz-container mx-auto md:w-[50%] xl:min-w-full w-[95%] mb-5">
+        <div className="react-quiz-container mx-auto md:w-[50%] xl:min-w-full w-[95%] mb-5 overflow-x-hidden">
             <h1 className='md:text-3xl sm:text-2xl text-xl mb-1'>Weekly Sports News Quiz - {quiz.quizTitle}</h1>
             <p className='md:text-lg text-sm'>{quiz.quizSynopsis}</p>
             <div className='flex flex-col mt-2 text-sm'>
