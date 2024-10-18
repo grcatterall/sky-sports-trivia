@@ -49,13 +49,15 @@ function Core({
 
   useEffect(() => {
     async function fetchArticleData(articleId: string) {
-      const url = `https://editorial.digitalcontent.sky/articles/${articleId}.json`
+      const url = `https://${process.env.NEXT_PUBLIC_BUCKET_URL}/articles/${articleId}.json`
       const article = await Request(url);
       setQuestionArticle(article);
     }
 
     if (activeQuestion.article_id) {
       fetchArticleData(activeQuestion.article_id);
+    } else {
+      setQuestionArticle({});
     }
   }, [currentQuestionIndex, questions]);
 
